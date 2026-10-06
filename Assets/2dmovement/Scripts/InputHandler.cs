@@ -18,6 +18,9 @@ namespace _2dmovement.Scripts {
       if (Input.GetKey(KeyCode.D)) {
         player.MoveRight();
       }
+      if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) {
+        player.MoveUp();
+      }
     }
     private void CreateExplosion()
     {
