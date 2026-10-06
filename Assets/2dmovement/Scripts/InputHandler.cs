@@ -24,7 +24,6 @@ namespace _2dmovement.Scripts {
       var origin = _camera.ScreenToWorldPoint(Input.mousePosition);
       origin.z = 0;
       Instantiate(Resources.Load<Explosion>("Prefabs/Explosion"), origin, Quaternion.identity);
-      player.PushFrom(origin, pushForce);
     }
   }
 }

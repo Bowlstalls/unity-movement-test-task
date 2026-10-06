@@ -16,12 +16,12 @@ namespace _2dmovement.Scripts {
     }
     private void FixedUpdate()
     {
-      var running = Math.Abs(_mc.Rb.linearVelocityX) > runningSpeedThreshold;
+      var running = Math.Abs(_mc.rb.linearVelocityX) > runningSpeedThreshold;
       _animator.SetBool("running", running);
       _animator.SetBool("flying", !_mc.IsGrounded);
       if (!running) return;
       
-      var positive = _mc.Rb.linearVelocityX > 0;
+      var positive = _mc.rb.linearVelocityX > 0;
       if (_facingPositive != positive) {
         transform.localScale *= new Vector2(-1, 1);
         _facingPositive = positive;
