@@ -10,7 +10,7 @@ namespace _2dmovement.Scripts {
     private void Update()
     {
       if (Input.GetMouseButtonDown(0)) {
-        Push();
+        CreateExplosion();
       }
       if (Input.GetKey(KeyCode.A)) {
         player.MoveLeft();
@@ -19,7 +19,7 @@ namespace _2dmovement.Scripts {
         player.MoveRight();
       }
     }
-    public void Push()
+    private void CreateExplosion()
     {
       var origin = _camera.ScreenToWorldPoint(Input.mousePosition);
       origin.z = 0;
