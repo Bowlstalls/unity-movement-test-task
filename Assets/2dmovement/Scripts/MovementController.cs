@@ -26,7 +26,7 @@ namespace _2dmovement.Scripts {
       _moveVector = Vector2.zero;
     }
 
-    public void Move(Vector2 value) => _moveVector += value;
+    public void Move(Vector2 value) => _moveVector = value;
     public void MoveRight() => Move(new Vector2(1, 0));
     public void MoveLeft() => Move(new Vector2(-1, 0));
     public void MoveUp() => Move(new Vector2(0, 1));
