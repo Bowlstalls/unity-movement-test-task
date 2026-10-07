@@ -1,24 +1,31 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace _2dmovement.Scripts {
   public class InputHandler : MonoBehaviour {
     [SerializeField] private MovementController player;
     [SerializeField] private float pushForce;
     private Camera _camera;
+    private int _groundMask;
+    private InputAction _moveAction;
+    private InputAction _jumpAction;
+    private InputAction _clickAction;
 
-    private void OnEnable() => _camera = Camera.main;
+    private void OnEnable()
+    {
+      _camera = Camera.main;
+      _groundMask = 1 << LayerMask.NameToLayer("Ground");
+      _moveAction = InputSystem.actions.FindAction("Move");
+      _jumpAction = InputSystem.actions.FindAction("Jump");
+      _clickAction = InputSystem.actions.FindAction("Attack");
+    } 
     private void Update()
     {
-      if (Input.GetMouseButtonDown(0)) {
+      if (_clickAction.WasPressedThisFrame()) {
         CreateExplosion();
       }
-      if (Input.GetKey(KeyCode.A)) {
-        player.MoveLeft();
-      }
-      if (Input.GetKey(KeyCode.D)) {
-        player.MoveRight();
-      }
-      if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) {
+      player.Move(_moveAction.ReadValue<Vector2>());
+      if (_jumpAction.IsPressed()) {
         player.MoveUp();
       }
     }
