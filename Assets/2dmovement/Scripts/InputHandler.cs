@@ -32,6 +32,9 @@ namespace _2dmovement.Scripts {
     private void CreateExplosion()
     {
       var origin = _camera.ScreenToWorldPoint(Input.mousePosition);
+      if (Physics2D.OverlapPoint(origin, _groundMask)) {
+        return;
+      }
       origin.z = 0;
       Instantiate(Resources.Load<Explosion>("Prefabs/Explosion"), origin, Quaternion.identity);
     }
